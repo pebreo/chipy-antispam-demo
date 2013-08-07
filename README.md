@@ -129,12 +129,13 @@ Installation & Requirements
 ======================
 This project utilizes:
 - Django 1.5
-- Psycopg2 
+- Psycopg2
+- PostgreSQL db
 
 To install this project just clone this repo and change the `local_settings.py`
 to your local postgresql db settings and login information. The `local_settings.py` overrides the `settings.py` file.
 
-In my case, I installed PostgreSQL with the following setup:
+You must have a local PostgreSQL server running. In my case, I installed PostgreSQL with the following setup:
 
     db name: postgres
     db username: postgres
