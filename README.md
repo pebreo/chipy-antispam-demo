@@ -28,12 +28,13 @@ dialog and hid them using jQuery. Those two fields are the "address" field and "
         <input id="address_field" type="text" name="address" placeholder="323 N Wacker">
     </div> 
 
-This is the jQuery method when the form dialog is open:
+
+To hide the honeypot fields, this is the jQuery method that's called when the form dialog is open:
 
     $('#supplementary-fields').css("display", "none");
 
 Spambots will indiscriminately fill out the fields and our Django view will
-handle the POST data appropriately: **reject any form submits that have 
+handle the POST data appropriately by **rejecting any form submits that have 
 the hidden "phone" or "address" filled out.** This is what the view will look like to handle
 the form POST:
 
