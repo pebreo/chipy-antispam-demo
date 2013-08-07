@@ -1,0 +1,315 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!-- saved from url=(0021)http://www.chipy.org/ -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>Welcome</title>
+        <link rel="shortcut icon" href="http://s3.amazonaws.com/chipy/favicon.ico">
+
+        
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+
+    <!-- dialog header formatting only seems to work with this remote css -->    
+    <link href="https://chipy.s3.amazonaws.com/css/flick/jquery-ui-1.8.23.custom.css" rel="stylesheet">
+        
+    <!-- <link href="{% static 'chipy/jquery-ui-1.8.23.custom.css' %}" rel="stylesheet"> -->
+    
+    <link href="{% static 'chipy/css'%}" rel="stylesheet" type="text/css">
+    <link href="{% static 'chipy/theme.css' %}" rel="stylesheet">
+    <link href="{% static 'chipy/chipy.css'%}" type="text/css" rel="stylesheet">
+    <link href="{% static 'chipy/paul.css'%}" type="text/css" rel="stylesheet">
+        
+    <!-- <link href="{% static 'chipy/jquery-ui.css'%}" type="text/css" rel="stylesheet"> -->
+    <!-- <link href="http://s3.amazonaws.com/chipy/css/conference.cssYYY" rel="stylesheet"> -->
+    <link href="{% static 'chipy/gh-fork-ribbon.css'%}" rel="stylesheet">
+
+
+        
+            <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+            <!--[if lt IE 9]>
+                <script src="https://chipy.s3.amazonaws.com/js/html5shiv.js?Signature=CfYycTtfTho8nhWUNjNnKlR0BWw%3D&Expires=1375632584&AWSAccessKeyId=AKIAIUJ7ZFR5WARYLTCA"></script>
+            <![endif]-->
+        
+
+        
+            
+        
+    </head>
+    <body class="home" id="" style="zoom: 1;">
+
+        
+            <div class="navbar ">
+                <div class="navbar-inner">
+                    <div class="container">
+                        
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <a class="brand" href="./Welcome2_files/Welcome2.htm"></a>
+                            <div class="nav-collapse">
+                                
+    <ul class="nav">
+         <li><a href="{% url 'chipy:index' %}">Home</a></li>
+        <li><a href="{% url 'chipy:message_page'  'about' %}">About</a></li>
+        <li><a href="{% url 'chipy:message_page'  'topics' %}">Recent Topics</a></li>
+        
+        <li><a href="{% url 'chipy:message_page' 'talk' %}">Give a Talk</a></li>
+        <li><a href="{% url 'chipy:message_page' 'contact' %}">Contact</a></li>
+        <li><a href="{% url 'chipy:message_page' 'members' %}">Members</a></li>    </ul>
+
+                                
+
+
+<div class="pull-right">
+    
+    <ul class="nav pull-right">
+        
+            <li><a href="{% url 'chipy:message_page' 'login' %}">Log in</a></li>
+                <!-- <li class="navbar-text">or</li> -->
+                <!-- <li><a href="#">Sign up</a></li> -->
+          </ul>
+        
+          
+
+</div>
+
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+        
+
+        
+            <div class="container">
+                
+
+                
+    <header id="home-header" class="row-fluid">
+        <div class="span6">
+            <div id="home-content">
+              <h1>Welcome to ChiPy</h1>
+              <p></p><div class="flatblock block-homepage_welcome_text">
+
+    <div class="content">Founded in 2003, Chicago Python User Group is one of the world's most active programming language special interest groups with over 1,000 active members and many more prestigious alumni. Our main focus is the Python Programming Language. There are many ways to get and stay involved. Meetings are open to all levels. Our main (Loop) meetings start at 7pm on the 2nd Thursday of every month at all different locations around downtown Chicago. Stay tuned for a range of other events including our special North meetings and Python Tutorials.
+</div>
+</div>
+<p></p>
+              <a class="btn" href="{% url 'chipy:message_page' 'about' %}">Learn more »</a>
+            </div>
+        </div>
+        <div class="span6">
+            <img src="{% static 'chipy/chipmunk.png' %}" alt="ChiPy">
+        </div>
+    </header>
+    
+    <div class="row-fluid">
+        <div class="module span4">
+            <h2>In the Loop</h2>
+            <p>Meetings happen in the downtown area the second Thursday of every month.</p>
+
+            <h3>Next Meeting</h3>
+            <p><strong>When:</strong> {{meeting.when|date:"M d, Y, P"}}</p>
+
+            
+            <p><strong>Where:</strong> <a id="" href="{% url 'chipy:message_page' 'djangocon' %}">{{meeting.topic}}</a></p><p>
+                
+                                <p>{{meeting.venue_set.all.0.address}} </p>
+              </p>
+              <div id="where-dialog" title="Venue" style="display:none">
+                 <p>{{meeting.venue_set.all.0.name}}</p> 
+                                <p>{{meeting.venue_set.all.0.address}} </p>
+                
+                
+                
+              </div>
+            
+            
+            <p><strong><a href="http://www.chipy.org/#" id="live-stream-link">Watch online</a></strong></p>
+            <p><strong>RSVP (without login):</strong>
+              
+              <a class="btn btn-mini rsvp" data-response="Y">Yes</a> <a class="btn btn-mini rsvp" data-response="M">Maybe</a> <a class="btn btn-mini rsvp" data-response="N">No</a></p>
+            
+            <p>{{num_rsvped}} going so far</p>
+            
+            <p><a class="btn" href="{% url 'chipy:rsvp_list'  %}">Show RSVP List »</a></p>
+        </div><!--/span-->
+        <div class="module span4">
+            <h2>This Month's Topics</h2>
+            <ul>
+              
+            </ul>
+        </div><!--/span-->
+        <div class="module span4">
+            <h2>IRC</h2>
+            <p>Some of us like to hang out in the IRC #chipy channel on irc.freenode.net</p>
+            <p><a class="btn" href="irc://irc.freenode.net/chipy">Start chatting »</a></p>
+            <h2>Mailing List</h2>
+            <p>Sign up to join the discussion.</p>
+            <p><a class="btn" href="http://mail.python.org/mailman/listinfo/chicago">Sign up »</a></p>
+        </div><!--/span-->
+    </div><!-- #row-fluid -->
+    <hr>
+
+              <div class="github-fork-ribbon-wrapper right-bottom">
+                <div class="github-fork-ribbon">
+                  <a href="https://github.com/chicagopython/chipy.org">Fork me on GitHub</a>
+                </div>
+              </div>
+
+            </div>
+        
+
+        
+            <div id="footer">
+                <div class="inner">
+                    <div class="container">
+                        
+    <div class="legal">
+        
+<div class="legal">
+    © 2013 Chicago Python User Group: Source code available at <a href="https://github.com/chicagopython/chipy.org">Github</a>
+</div>
+
+    </div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+            <!-- <script src="{% static 'chipy/csrf.js' %}"></script> -->
+            <script src="{% static 'chipy/jquery.js' %}"></script> 
+            <script src="{% static 'chipy/bootstrap.js' %}"></script>
+            <script src="{% static 'chipy/theme.js' %}"></script>
+                
+            <script src="{% static 'chipy/jquery-ui-1.8.23.custom.min.js' %}"></script> 
+            <script type="text/javascript">
+                        $(document).ready(function() {
+                                $('.rsvp').click(function(){
+                                        //clear form
+                                        $("#anonymous-rsvp-form :text").val("");
+                                        
+                                        //make fields blank and box should be unchecked
+                                        $('#supplementary-fields').css("display", "none");
+                                        $('#show-fields-check').prop('checked', false);
+                                        
+                                        // open dialog
+                                        $('#anonymous-rsvp-dialog').dialog();
+                                        $('#anonymous-rsvp-form input[name=response]').val($(this).data('response'))
+                                        return false;
+                
+                                });
+                                
+                                
+                                
+                            
+                                $('#anonymous-rsvp-form1').submit(function(event){
+                                        //event.preventDefault();
+                                        $.ajax({
+                                            headers: [{"X-Requested-With":"XMLHttpRequest"}],
+                                                type: 'POST',
+                                                url: '{% url 'chipy:rsvp' %}',
+                                                data: $('#anonymous-rsvp-form').serialize(),
+                                                
+                                                success: function (data, textStatus) {
+                                                        alert(data, textStatus);
+                                                        $('#anonymous-rsvp-dialog').html(data);
+                                                }, 
+                                                
+                                                error: function(xhr, status, e) {
+                                                        alert(status, e);
+                                                }                               
+                                        });             
+                                }); 
+                                /* //NOT USED
+                                $('#anonymous-rsvp-form1').submit(function(event){
+                                        //event.preventDefault();
+                                        $.ajax({
+                                            headers: [{"X-Requested-With":"XMLHttpRequest"}],
+                                                type: 'POST',
+                                                url: '{% url 'chipy:rsvp' %}',
+                                                data: $('#anonymous-rsvp-form').serialize(),
+                                                
+                                                success: function (data, textStatus) {
+                                                        alert(data, textStatus);
+                                                        $('#anonymous-rsvp-dialog').html(data);
+                                                }, 
+                                                
+                                                error: function(xhr, status, e) {
+                                                        alert(status, e);
+                                                }                               
+                                        });             
+                                }); 
+                                */
+                                // called when checkbox is clicked
+                                $('#show-fields-check').click(function(){
+                                    //var $this = $(this);
+                                        if ($('#show-fields-check').is(':checked')) {
+                                                // the checkbox was checked
+                                                //alert("checked");
+                                                $('#supplementary-fields').css("display", "block");
+                                        } else {
+                                                // the checkbox was unchecked
+                                                //alert("unchecked");
+                                                $('#supplementary-fields').css("display", "none");
+                                        }
+                                });
+                                
+                                
+                        });
+             
+            </script>
+        
+
+        
+            
+        
+    
+
+<div class="ui-dialog ui-widget ui-widget-content ui-corner-all" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-login-dialog" style="display: none; z-index: 1002; outline: 0px; height: auto; width: 182px; top: 67px; left: 579.5px;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-login-dialog">Select Provider</span><a href="http://www.chipy.org/#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div><div id="login-dialog" style="width: auto; min-height: 108.71875px; height: auto;" class="ui-dialog-content ui-widget-content" scrolltop="0" scrollleft="0">
+            
+Sign in with <br>
+<a href="http://www.chipy.org/login/google/?"><button class="zocial google">Google</button></a><br>
+<a href="http://www.chipy.org/login/github/?"><button class="zocial github">Github</button></a><br>
+<button class="zocial openid" id="openid-button">OpenID</button><br>
+            
+          </div></div>
+		  <div class="ui-dialog ui-widget ui-widget-content ui-corner-all" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-anonymous-rsvp-dialog" style="display: none; z-index: 1002; outline: 0px; height: auto; width: 300px; top: 389px; left: 520.5px;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-anonymous-rsvp-dialog">&nbsp;</span><a href="http://www.chipy.org/#" class="ui-dialog-titlebar-close ui-corner-all" role="button"><span class="ui-icon ui-icon-closethick">close</span></a></div></div><div class="ui-dialog ui-widget ui-widget-content ui-corner-all" tabindex="-1" role="dialog" aria-labelledby="ui-dialog-title-anonymous-rsvp-dialog" style="display: none; z-index: 1002; outline: 0px; height: auto; width: 300px; top: -385.1875px; left: 524.5px; position: relative;"><div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix"><span class="ui-dialog-title" id="ui-dialog-title-anonymous-rsvp-dialog">&nbsp;</span>
+                  <a href="http://localhost:8000/chipy/#" class="ui-dialog-titlebar-close ui-corner-all" role="button">x
+                  <span class="ui-icon ui-icon-closethick">close</span></a>
+                  </div>
+				  
+				  <div id="anonymous-rsvp-dialog" style="width: auto; min-height: 128px; height: auto;" class="ui-dialog-content ui-widget-content" scrolltop="0" scrollleft="0">
+              <form id="anonymous-rsvp-form" method="POST" action="{% url 'chipy:rsvp' %}">
+                <div style="display:none">{% csrf_token %}</div>
+                <label for="name">Enter the name <strong>on your ID</strong> for access to the meeting venue.</label>
+                
+                                <input type="text" name="name" placeholder="John Smith">
+                <label for="email">Email</label>
+                <input type="text" name="email" placeholder="john@example.com">
+                                
+                                <div id="supplementary-fields" style="diplay:block"> 
+                                        <label id="phone" for="phone">Phone</label>
+                                        <input id="phone_field" type="text" name="phone" placeholder="708-543-5334">
+                                        
+                                        <label id="address" for="address">Address</label>
+                                         <input id="address_field" type="text" name="address" placeholder="323 N Wacker">
+                                </div> 
+                                
+                <input type="hidden" name="meeting" value="10">
+                <input type="hidden" name="response" value="Y">
+                              
+                <p em="75%"> Check to show hidden fields:
+                                <input id="show-fields-check" type="checkbox" name="checkbox" value="">
+                                </p>
+                                
+                                <input type="submit" name="submit" value="RSVP" class="btn btn-primary">
+                            <!-- <input type="submit" name="submit" value="Test honeypot" class="btn btn-primary">  -->
+              </form>
+            </div>
+                        
+                        </div></body></html>

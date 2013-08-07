@@ -1,0 +1,19 @@
+
+// .class is the class
+// #id is the id name
+.ui-dialog #address {
+	//display: none;
+}
+
+.ui-dialog #address_field {
+	//display: none;
+}
+
+.ui-dialog #phone {
+	//display: none;
+}
+
+.ui-dialog #phone_field {
+	//display: none;
+}
+

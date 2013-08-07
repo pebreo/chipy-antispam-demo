@@ -1,0 +1,9 @@
+{% if rsvplist %}
+	{% for p in rsvplist %}
+
+		<p> name: {{p.name}} -- email: {{p.email}} -- is going? {{p.ynm}}</p>
+		
+	{% endfor %}
+{% else %}
+	No persons are available.
+{% endif %}

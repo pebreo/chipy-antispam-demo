@@ -1,0 +1,13 @@
+#local_settings.py 
+version.rtf
+#*.jpg
+#*.png
+#*.gif
+#*.jpeg
+*.db
+
+*.pyc
+*.pyo
+.DS_Store
+#*
+*#
