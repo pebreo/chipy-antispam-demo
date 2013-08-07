@@ -142,3 +142,5 @@ In my case, I installed PostgreSQL with the following setup:
     db username: postgres
     pw: 1234
     PORT: 54321
+
+When your done with the settings just run `python manage.py runserver` and goto `http://localhost:8000/chipy/`. 
