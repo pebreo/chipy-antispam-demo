@@ -12,11 +12,9 @@ filter spam from the ChiPy RSVP submission form.
 
 Basic Algorithm
 ===============
-A honeypot is any enticing object or resource that is meant to attract 
-antagonists into doing their unwanted behavior, at the same time alerting 
-the person trying to fight the unwanted behavior. In this case, the unwanted behavior 
-is spambots automatically filling out the the ChiPy RSVP form. The honeypot
-will be hidden HTML fields which our Django view will perform logic on.
+A honeypot is any enticing trap meant to alert a person trying to fight unwanted behavior. 
+In this case, the unwanted behavior is spambots automatically filling out the the ChiPy RSVP form. 
+The honeypot will be hidden HTML fields which our Django view will perform logic on.
 
 To implement the honey pot, I added two extra form fields to the RSVP popup 
 dialog and hid them using jQuery. Those two fields are the "address" field and "phone" field.
