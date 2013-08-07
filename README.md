@@ -60,12 +60,12 @@ There's room for a lot of improvement. :)
 
 
 
-Django unittests
+Django unit tests
 ============
 For this project I made 7 unit test methods.
 * Form submission tests:
-  - Test the RSVP submit view handling valid data
-  - Test the RSVP submit view handling invalid data
+  - Test the RSVP form submit view handling valid data
+  - Test the RSVP form submit view handling invalid data
   
 * RSVP ListView tests:
   - Test the ListView to handle no people on the rsvp list
