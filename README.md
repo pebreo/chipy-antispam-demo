@@ -1,17 +1,14 @@
-A ChiPy AntiSpam Demo
-=====================
+# A ChiPy AntiSpam Demo
 * Author: Paul Ebreo
 * Experience level: newbie
 * Interests: Python, Django, and Javascript
 
-Purpose
-=======
+## Purpose
 A common problem with maintaining a website is filtering out spam.
 This Django project demonstrates how to implement a "honeypot" approach to
 filter spam from the ChiPy RSVP submission form. 
 
-Basic Algorithm
-===============
+## Basic Algorithm
 A honeypot is any enticing trap meant to alert a person trying to fight unwanted behavior. 
 In this case, the unwanted behavior is spambots automatically filling out the the ChiPy RSVP form. 
 The honeypot will be hidden HTML fields which our Django view will perform logic on.
@@ -59,9 +56,7 @@ It is not very sophisticated but it is a decent first iteration of the honeypot 
 There's room for a lot of improvement. :)
 
 
-
-Django unit tests
-============
+## Django unit tests
 For this project I made 7 unit test methods.
 * Form submission tests:
   - Test the RSVP form submit view handling valid data
@@ -125,8 +120,7 @@ And to test invalid form submissions:
         self.assertContains(response,"Not a valid rsvp submission")
         
 
-Installation & Requirements
-======================
+## Installation & Requirements
 This project utilizes:
 - Django 1.5
 - Psycopg2
