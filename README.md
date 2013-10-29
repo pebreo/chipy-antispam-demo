@@ -3,6 +3,9 @@
 * Experience level: newbie
 * Interests: Python, Django, and Javascript
 
+## Demo
+Click here for the demo: [http://pauleb.com/chipy][demolink]
+
 ## Purpose
 A common problem with maintaining a website is filtering out spam.
 This Django project demonstrates how to implement a "honeypot" approach to
@@ -137,3 +140,5 @@ You must have a local PostgreSQL server running. In my case, I installed Postgre
     PORT: 54321
 
 When you're done with the settings just run `python manage.py runserver` and goto `http://localhost:8000/chipy/`. 
+
+[demolink]: http://pauleb.com/chipy "Antispam Demo"
