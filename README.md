@@ -1,6 +1,5 @@
 # A ChiPy AntiSpam Demo
 * Author: Paul Ebreo
-* Experience level: newbie
 * Interests: Python, Django, and Javascript
 
 ## Demo
@@ -118,7 +117,6 @@ And to test invalid form submissions:
         }
 
         response = self.client.post(reverse('chipy:rsvp'),post_kwargs)
-
         self.assertEqual(response.status_code,200)
         self.assertContains(response,"Not a valid rsvp submission")
         
