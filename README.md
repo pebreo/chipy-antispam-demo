@@ -17,42 +17,44 @@ The honeypot will be hidden HTML fields which our Django view will perform logic
 
 To implement the honey pot, I added two extra form fields to the RSVP popup 
 dialog and hid them using jQuery. Those two fields are the "address" field and "phone" field.
-   
-    <div id="supplementary-fields" style="diplay:block"> 
-        <label id="phone" for="phone">Phone</label>
-        <input id="phone_field" type="text" name="phone" placeholder="708-588-2300">                       
-        <label id="address" for="address">Address</label>
-        <input id="address_field" type="text" name="address" placeholder="323 N Wacker">
-    </div> 
 
+```html
+<div id="supplementary-fields" style="diplay:block"> 
+  <label id="phone" for="phone">Phone</label>
+  <input id="phone_field" type="text" name="phone" placeholder="708-588-2300">                       
+  <label id="address" for="address">Address</label>
+  <input id="address_field" type="text" name="address" placeholder="323 N Wacker">
+</div> 
+```
 
 To hide the honeypot fields, this is the jQuery method that's called when the form dialog is open:
-
-    $('#supplementary-fields').css("display", "none");
-
+```javascript
+$('#supplementary-fields').css("display", "none");
+```
 Spambots will indiscriminately fill out the fields and our Django view will
 handle the POST data appropriately by **rejecting any form submits that have 
 the hidden "phone" or "address" filled out.** This is what the view will look like to handle
 the form POST:
 
-      def rsvp(request):
-         """ A view to handle the RSVP form submission """
-         if request.method == 'POST':
-            try:
-               """ Accept if neither ('address' or 'post') are filled in """
-               if not (request.POST['address'] or request.POST['phone']):
-                  person = Person(name=request.POST['name'],
+```python
+def rsvp(request):
+    """ A view to handle the RSVP form submission """
+    if request.method == 'POST':
+        try:
+            """ Accept if neither ('address' or 'post') are filled in """
+            if not (request.POST['address'] or request.POST['phone']):
+                person = Person(name=request.POST['name'],
                                 email=request.POST['email'],
                                 ynm=request.POST['response'])
-                  person.save()
-                  return HttpResponseRedirect(reverse('chipy:index'))
-               else:
-                  return HttpResponse("Not a valid rsvp submission")
-            except Person.DoesNotExist:
-               raise Http404
+                person.save()
+                return HttpResponseRedirect(reverse('chipy:index'))
+             else:
+                 return HttpResponse("Not a valid rsvp submission")
+        except Person.DoesNotExist:
+            raise Http404
          
-         return HttpResponseRedirect(reverse('chipy:index'))
-
+    return HttpResponseRedirect(reverse('chipy:index'))
+```
 
 It is not very sophisticated but it is a decent first iteration of the honeypot algorithm.
 There's room for a lot of improvement. :)
@@ -77,11 +79,13 @@ For this project I made 7 unit test methods.
 For this project, the most important unittests are the form submission
 tests which look like this:
 
-
-      
-    def test_rsvp_form_submit_view_valid(self):
-        """ A valid form should have blank phone and address data """
-        post_kwargs = {'checkbox':'',
+		
+```python      
+def test_rsvp_form_submit_view_valid(self):
+    """ 
+    A valid form should have blank phone and address data 
+    """
+    post_kwargs = {'checkbox':'',
                     'name':'john',
                     'submit':'RSVP',
                     'response':'Y',
@@ -91,20 +95,22 @@ tests which look like this:
                     'meeting':'sometime',
                     'email':'john@yahoo',
 
-        }
-        create_person('john','john@yahoo.com','Y')
-        response = self.client.post(reverse('chipy:rsvp'),post_kwargs)
+    }
+    create_person('john','john@yahoo.com','Y')
+    response = self.client.post(reverse('chipy:rsvp'),post_kwargs)
         
-		self.assertEqual(response.status_code,302) # redirect
+    self.assertEqual(response.status_code,302) # redirect
+```
 
 And to test invalid form submissions:
 
-
-    def test_rsvp_form_submit_view_invalid_submission(self):
-        """ An invalid submit will have phone and/or address filled in
-            Spambots would fill in those hidden fields
-        """
-        post_kwargs = {'checkbox':'',
+```python
+def test_rsvp_form_submit_view_invalid_submission(self):
+    """ 
+    An invalid submit will have phone and/or address filled in
+    Spambots would fill in those hidden fields
+    """
+    post_kwargs = {'checkbox':'',
                     'name':'john',
                     'submit':'RSVP',
                     'response':'Y',
@@ -113,13 +119,12 @@ And to test invalid form submissions:
                     'csrfmiddlewaretoken':'1234',
                     'meeting':'sometime',
                     'email':'john@yahoo',
+    }
 
-        }
-
-        response = self.client.post(reverse('chipy:rsvp'),post_kwargs)
-        self.assertEqual(response.status_code,200)
-        self.assertContains(response,"Not a valid rsvp submission")
-        
+    response = self.client.post(reverse('chipy:rsvp'),post_kwargs)
+    self.assertEqual(response.status_code,200)
+    self.assertContains(response,"Not a valid rsvp submission")
+```     
 
 ## Installation & Requirements
 This project utilizes:
