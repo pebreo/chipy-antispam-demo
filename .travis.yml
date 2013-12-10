@@ -5,12 +5,17 @@ python:
 # - "3.2"
 
 env:
-- DJANGO=1.5.5 DB=postgres
+- DB=postgres DJANGO_VERSION=1.5.5 PSYCOPG_VERSION=2.4.5
 
 # command to install dependencies
 install:
 #- pip install -q Django=$DJANGO 
 - pip install -r requirements.txt 
+#- 'if [ "$DJANGO_VERSION" != "1.6b2" ]; then pip install --use-mirrors django==$DJANGO_VERSION; fi'
+
+
+before_script:
+  - psql -c 'create database postgres;' -U postgres
 
 # command to run tests
 script: python manage.py test
