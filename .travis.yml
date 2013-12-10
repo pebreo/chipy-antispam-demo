@@ -16,7 +16,7 @@ install:
 
 
 before_script:
-  - psql -c 'create database myapp_test;' -U postgres
+  - psql -c 'create database mysitedb;' -U postgres
 
 # command to run tests
 script: python manage.py test
