@@ -14,8 +14,9 @@ install:
 #- 'if [ "$DJANGO_VERSION" != "1.6b2" ]; then pip install --use-mirrors django==$DJANGO_VERSION; fi'
 
 
-before_script:
-  - psql -c 'create database postgres;' -U postgres
+
+#before_script:
+#  - psql -c 'create database postgres;' -U postgres
 
 # command to run tests
 script: python manage.py test
