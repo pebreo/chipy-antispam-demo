@@ -10,7 +10,7 @@ env:
 # command to install dependencies
 install:
 #- pip install -q Django=$DJANGO 
-- pip install -r requirements.txt 
+- pip install -r requirements.txt --user-mirrors
 #- 'if [ "$DJANGO_VERSION" != "1.6b2" ]; then pip install --use-mirrors django==$DJANGO_VERSION; fi'
 
 
