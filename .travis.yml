@@ -14,4 +14,4 @@ before_script:
   - psql -c 'create database mysitedb;' -U postgres
 
 # command to run tests
-script: python manage.py test
+script: python manage.py test --verbosity=2
