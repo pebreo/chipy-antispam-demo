@@ -1,14 +1,14 @@
 language: python
 
 python:
-- "2.7"
+  - "2.7"
 
 env:
-- DB=postgres DJANGO_VERSION=1.5.5 PSYCOPG_VERSION=2.4.5
+  - DB=postgres DJANGO_VERSION=1.5.5 PSYCOPG_VERSION=2.4.5
 
 # command to install dependencies
 install:
-- pip install -r requirements.txt --use-mirrors
+  - pip install -r requirements.txt --use-mirrors
 
 before_script:
   - psql -c 'create database mysitedb;' -U postgres
